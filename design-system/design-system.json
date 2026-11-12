@@ -1,0 +1,121 @@
+{
+  "v": 3,
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "l",
+      "order": [
+        "eduka-logo.svg",
+        "eduka-logo-negativo.svg",
+        "eduka-logo-com-icone.svg",
+        "eduka-logo-com-icone-negativo.svg",
+        "eduka-simbolo.svg",
+        "eduka-icone-app.svg",
+        "eduka-favicon.svg"
+      ],
+      "files": {
+        "eduka-logo.svg": {
+          "name": "eduka-logo.svg",
+          "blob": "25d55592b2a7872c9abbfdd323c92a43",
+          "size": 5052,
+          "type": "image/svg+xml"
+        },
+        "eduka-logo-negativo.svg": {
+          "name": "eduka-logo-negativo.svg",
+          "blob": "aff270f41c3277dc6bcf60ba84dc2183",
+          "size": 5052,
+          "type": "image/svg+xml"
+        },
+        "eduka-logo-com-icone.svg": {
+          "name": "eduka-logo-com-icone.svg",
+          "blob": "62cc9ea109be9c18e593fac7ff9144e0",
+          "size": 4828,
+          "type": "image/svg+xml"
+        },
+        "eduka-logo-com-icone-negativo.svg": {
+          "name": "eduka-logo-com-icone-negativo.svg",
+          "blob": "211f2876a554675d32bbc2874e25d561",
+          "size": 4828,
+          "type": "image/svg+xml"
+        },
+        "eduka-simbolo.svg": {
+          "name": "eduka-simbolo.svg",
+          "blob": "72c2f888ee9db12b5cb5b74c5bd8586b",
+          "size": 761,
+          "type": "image/svg+xml"
+        },
+        "eduka-icone-app.svg": {
+          "name": "eduka-icone-app.svg",
+          "blob": "4166d6ddffdb987bd37403995c8ee79d",
+          "size": 1147,
+          "type": "image/svg+xml"
+        },
+        "eduka-favicon.svg": {
+          "name": "eduka-favicon.svg",
+          "blob": "46982a1149d918a78a0888fa4e4f4529",
+          "size": 775,
+          "type": "image/svg+xml"
+        }
+      }
+    },
+    "Mascote": {
+      "name": "Mascote",
+      "tile": "m",
+      "order": [
+        "kadu.svg",
+        "kadu-comemorando.svg",
+        "kadu-dica.svg",
+        "kadu-avatar.svg"
+      ],
+      "files": {
+        "kadu.svg": {
+          "name": "kadu.svg",
+          "blob": "843294de82daaab02730c74a0f2823d7",
+          "size": 1102,
+          "type": "image/svg+xml"
+        },
+        "kadu-comemorando.svg": {
+          "name": "kadu-comemorando.svg",
+          "blob": "80c0813b97e6fafc08e5626e1667eca8",
+          "size": 1384,
+          "type": "image/svg+xml"
+        },
+        "kadu-dica.svg": {
+          "name": "kadu-dica.svg",
+          "blob": "2dc6cb0bfa5a6e3cf48533836a15cf1d",
+          "size": 1111,
+          "type": "image/svg+xml"
+        },
+        "kadu-avatar.svg": {
+          "name": "kadu-avatar.svg",
+          "blob": "3fef1a301a6914686cfb85635c566710",
+          "size": 1179,
+          "type": "image/svg+xml"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-10-29T02:05:07Z",
+    "v": 1
+  },
+  "docs": {
+    "sections": []
+  },
+  "groups": [
+    "Logos",
+    "Mascote"
+  ],
+  "lastChange": {
+    "by": "Claude",
+    "at": "2026-10-29T02:32:19Z",
+    "via": "claude.ai",
+    "note": "Logo novo: o Kadu é o K de eduka; ícone do app com o Kadu."
+  },
+  "layout": "files",
+  "libraries": [],
+  "namespace": "Eduka",
+  "sections": {},
+  "title": "Eduka"
+}

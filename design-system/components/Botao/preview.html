@@ -1,0 +1,23 @@
+<!-- @dsCard group="Ações" height=200 -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>Botão</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600\&family=Lexend:wght@400;600\&display=swap">
+<style>
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--font-sans);}
+.wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);padding:var(--space-5);}
+.col{display:flex;flex-direction:column;gap:var(--space-3);}
+.rot{font-size:13px;line-height:18px;font-weight:500;color:var(--ink-muted);letter-spacing:.01em;}
+button{font:inherit;cursor:pointer;border:0;}
+button:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px;}
+.a{height:52px;border-radius:var(--radius-lg);font-family:var(--font-display);font-size:18px;font-weight:600;}
+.a.pri{background:var(--violeta);color:var(--on-violeta);box-shadow:var(--shadow-aluno);}
+.a.sec{background:var(--surface-raised);color:var(--violeta);border:2px solid var(--line-strong);}
+.p{height:44px;border-radius:var(--radius-md);font-size:15px;font-weight:600;padding:0 var(--space-4);}
+.p.pri{background:var(--violeta);color:var(--on-violeta);}
+.p.sec{background:transparent;color:var(--ink);border:1px solid var(--line-strong);}
+</style></head>
+<body><div class="wrap">
+<div class="col"><span class="rot">Aluno · Fredoka · radius-lg · 52px</span><button class="a pri">Verificar</button><button class="a sec">Pular por agora</button></div>
+<div class="col"><span class="rot">Professor · Lexend · radius-md · 44px</span><button class="p pri">Registrar reforço</button><button class="p sec">Ver todos os alunos</button></div>
+</div></body></html>

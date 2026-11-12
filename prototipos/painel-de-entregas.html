@@ -1,0 +1,202 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Entregas Eduka</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: placar geral no topo, depois um cartão por integrante com barra própria e checklist */
+:root{
+  --bg:#f3f6f2; --surface:#ffffff; --ink:#1d2a24; --muted:#5d6e66; --line:#dbe3dd;
+  --track:#e3eae5; --accent:#2f9e5b; --accent-ink:#ffffff; --pending:#c98a1e;
+  --display:"Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+  --body:"Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141b17; --surface:#1c2520; --ink:#e6eee9; --muted:#9db0a6; --line:#2c3832;
+  --track:#2a352f; --accent:#4cc47c; --accent-ink:#0d1a12; --pending:#e5aa47; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141b17; --surface:#1c2520; --ink:#e6eee9; --muted:#9db0a6; --line:#2c3832;
+  --track:#2a352f; --accent:#4cc47c; --accent-ink:#0d1a12; --pending:#e5aa47; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:960px;margin:0 auto;padding-block:28px 48px;
+  padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px));
+  display:grid;gap:22px}
+h1,h2{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.1}
+h1{font-size:2rem;font-weight:800}
+.sub{color:var(--muted);margin:4px 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:.9rem;margin-top:10px}
+.meta b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:14px}
+.hero-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.big{font-family:var(--display);font-weight:800;font-size:3rem;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:1rem;color:var(--muted);font-family:var(--body);font-weight:600;margin-left:6px}
+.bar{height:22px;border-radius:999px;background:var(--track);overflow:hidden;position:relative}
+.bar.sm{height:12px}
+.fill{height:100%;border-radius:999px;background:var(--accent);width:0;transition:width .6s ease;
+  box-shadow:inset 0 -4px 0 rgba(0,0,0,.12)}
+@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:12px;align-content:start;min-width:0}
+.card-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.card h2{font-size:1.35rem;font-weight:800}
+.role{color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.pct{font-family:var(--display);font-weight:800;font-size:1.3rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pct span{color:var(--muted);font-size:.85rem;font-family:var(--body);font-weight:600}
+
+ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;margin-top:1px}
+li.done .dot{background:var(--accent);border-color:var(--accent)}
+li.done .dot::after{content:"";width:6px;height:11px;border:solid var(--accent-ink);border-width:0 2.5px 2.5px 0;transform:translate(0,-1px) rotate(45deg)}
+.task{min-width:0}
+li.done .task-name{color:var(--muted)}
+.note{display:block;font-size:.85rem;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:1px}
+li.done .tag{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)}
+li:not(.done) .tag{background:color-mix(in srgb,var(--pending) 16%,transparent);color:var(--pending)}
+.foot{color:var(--muted);font-size:.85rem}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Entregas da equipe Eduka</h1>
+    <p class="sub" style="margin-top:2px">Equipe Abençoados f.c</p>
+    <p class="sub">Hackathon 2026 · Desafio 2 "Aprender no tempo certo"</p>
+    <div class="meta">
+      <span>Link do Drive: <b>29/10 às 20h40</b></span>
+      <span>Apresentação: <b>21h</b></span>
+      <span id="countdown"></span>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Progresso geral">
+    <div class="hero-top">
+      <div class="big" id="totalPct">0%<small></small></div>
+      <div class="meta" style="margin:0"><span id="totalCount"></span></div>
+    </div>
+    <div class="bar" role="progressbar" aria-label="Progresso geral" id="totalBar"><div class="fill"></div></div>
+  </section>
+
+  <section class="grid" id="people"></section>
+  <p class="foot" id="updated"></p>
+</div>
+
+<script>
+// Atualizado pelo Claude a cada entrega colada no chat.
+const ATUALIZADO = "29/10 às 19h30";
+const EQUIPE = [
+  { nome:"Entrega de hoje", papel:"Pitch: Daniel e Gabriel · Entregas: Lucas e Mateus", itens:[
+    { t:"Pitch final alinhado (PITCH_FINAL_Eduka.docx)", ok:true, nota:"Decisões fechadas pelo Daniel: nota 4,0, slide 2B, slide extra com o Daniel, Lia na demo, faixa de preço. Fala estimada em ~6 min" },
+    { t:"Slides completos: solução + decisões tomadas pela equipe (art. 16)", ok:true, nota:"Gabriel · até 19h. Incluir um slide de decisões: sem ranking, IA só sugere, 6º ao 9º, escola contrata" },
+    { t:"Pasta no Google Drive com apresentação e solução (art. 16)", ok:false, nota:"Lucas e Mateus · Subir o Eduka_Entrega_Drive.zip descompactado + PDF dos slides (Daniel passa) + PNGs. Acesso: qualquer pessoa com o link" },
+    { t:"Testar o link do Drive em uma aba anônima", ok:false, nota:"Lucas e Mateus · Abrir sem login: tudo precisa aparecer, inclusive o link do canvas" },
+    { t:"Link enviado pelo site oficial (art. 16)", ok:false, nota:"Lucas e Mateus · até 20h40, sem tolerância. Meta: 20h20. Avisar no grupo com o print do envio" },
+    { t:"Só dados fictícios em tudo (art. 9º, parágrafo único)", ok:true, nota:"Conferido: alunos, escola e professora fictícios; pesquisa sem nomes de professores" },
+    { t:"Pesquisa com professores (formulário)", ok:true, nota:"14 respostas tabuladas às 17h50; números do slide 4 enviados ao Gabriel" },
+    { t:"Decidir o que é entregue como 'solução desenvolvida' e como a IA aparece", ok:true, nota:"Protótipo navegável + documentação; IA mostrada na importação ('sugestão: confirme'); login fictício" },
+    { t:"Ensaio da demonstração no canvas (2:10 a 3:30 do pitch)", ok:false, nota:"Daniel e Gabriel · Gabriel clica, Daniel fala. 1) Passar o Play inteiro e conferir o Kadu; 2) treinar a sequência 3 vezes (importar → grupos → ficha → reforço → app → clã) contando a história erro → lacuna → trilha; 3) vídeo do plano B: Mateus grava a tela fazendo o caminho e deixa aberto numa aba" },
+    { t:"Ensaio cronometrado: 7 min cravados (art. 18)", ok:false, nota:"Daniel e Gabriel · 20h às 20h30. O limite é rígido" },
+    { t:"Exportar o PDF final do deck e passar para Lucas e Mateus", ok:false, nota:"Daniel · logo depois do ensaio, ~20h10 (Compartilhar › Exportar › PDF)" },
+    { t:"Os 4 sabem explicar o projeto (art. 9º)", ok:false, nota:"Todos · Lucas e Mateus também respondem perguntas: viabilidade, preço, tecnologia e LGPD estão no doc 'Preparação para a banca'" },
+    { t:"Equipe completa na sala às 19h (arts. 12 e 16)", ok:false, nota:"Menos de 4 integrantes desclassifica (art. 5º)" },
+    { t:"Amanhã: todos no Auditório Joaquim Lauer às 19h (art. 22)", ok:false, nota:"Ausência na chamada desclassifica, mesmo sem ser finalista" },
+  ]},
+  { nome:"Daniel", papel:"Aparência (design visual)", itens:[
+    { t:"Identidade visual: logo, paleta, tipografia, ícones", ok:true, nota:"Violeta + laranja, Fredoka e Lexend, mascote Kadu, guia de marca publicado" },
+    { t:"Kit de componentes", ok:true, nota:"Botões, etiquetas, barras, nós da trilha, alternativas e navegação" },
+    { t:"Telas do aluno: nivelamento, trilha, exercício, conquistas", ok:true, nota:"Abertura, exercício com acerto/erro, trilha pela lacuna, Clã Cometas" },
+    { t:"Telas do professor: Hoje, Painel da turma, Detalhe do aluno", ok:true, nota:"Inclui Registrar reforço e fluxo navegável no modo Play" },
+    { t:"Modelo de slides e molduras de celular", ok:true, nota:"Capa, conteúdo e imagem; moldura dupla 16:9" },
+    { t:"Extra: versão desktop 1440 × 900 responsiva", ok:true, nota:"Aluno: Trilha e Exercício em modo foco. Professor: Hoje e Painel da turma com detalhe da aluna ao lado" },
+    { t:"Extra: nivelamento, importar resultados e diagrama do ciclo", ok:true, nota:"Celular e desktop, com estados vazios" },
+    { t:"Telas exportadas em imagem para os slides", ok:true, nota:"PNGs nos 6 slides; capa com o nome da equipe" },
+    { t:"Compartilhar guia, canvas e slides com a equipe", ok:true, nota:"Compartilhados com o grupo" },
+    { t:"Novo layout do professor e Kadu reduzido no aluno", ok:true, nota:"44 telas copiadas para 'Versão anterior'; Hoje e Painel da turma no estilo novo" },
+    { t:"Mapa 'Fluxo e funções' (ciclo, telas por perfil, quem vê o quê)", ok:true, nota:"53 telas mapeadas: 23 prontas, 17 faltam no MVP, 13 depois" },
+    { t:"Telas que faltam para a demonstração e correção das contradições", ok:true, nota:"37 de 59 telas prontas; Play sem cliques vazios; português, provas, entrada do aluno e currículo feitos" },
+    { t:"Corrigir pontos confusos do painel do professor (celular e desktop)", ok:true, nota:"Um só menu de abas, um botão por grupo, indicadores padronizados, aba Alunos nova, Hoje reorganizado. 38 de 59 telas prontas; slides 4 e 5 atualizados" },
+    { t:"Reexportar a moldura dupla do slide 4 com as telas novas", ok:true, nota:"Slides 4 e 5 atualizados" },
+    { t:"Deixar o deck de slides acessível pelo link", ok:true, nota:"Aberto para qualquer pessoa com o link" },
+    { t:"Deck montado com o pitch (7 slides + 2 ocultos)", ok:true, nota:"8 slides visíveis com o pitch final nas notas; nenhum marcador pendente. Falta só passar uma vez (cliques do slide 3)" },
+    { t:"Exportar o deck em PDF para a pasta do Drive", ok:false, nota:"Obrigatório. No deck: Compartilhar › Exportar › PDF → salvar em 01_Apresentacao. Fazer por último, depois que o Gabriel fechar nota da Ana, slide 2/2B e slide extra (por volta das 20h10)" },
+    { t:"Exportar os PNGs finais para a pasta do Drive", ok:false, nota:"Recomendado, não obrigatório. Pedir ao chat de UI só a exportação das telas, sem mudar nada → salvar em 03_Telas. Serve de garantia se o canvas pedir login" },
+  ]},
+  { nome:"Lucas", papel:"Estrutura do produto", itens:[
+    { t:"Fluxo de telas por perfil (aluno, professor, escola)", ok:true, nota:"Coberto pelo documento de telas do Gabriel (professor e configurador) e pelo canvas do Daniel (aluno)" },
+    { t:"Regras do ciclo: nivelamento → notas → lacuna → trilha → reforço", ok:true, nota:"No pacote do ChatGPT; falta a parte de português" },
+    { t:"Base de dados fictícia (turma, alunos, notas, habilidades BNCC)", ok:true, nota:"Planilha de demonstração e estrutura do banco no pacote; faltam tabelas do currículo" },
+    { t:"Canvas do modelo de negócio (proposta de valor, parceiros-chave etc.)", ok:true, nota:"No pacote; corrigir o segmento para 6º ao 9º ano" },
+    { t:"Completar o pacote com português e as correções da revisão", ok:true, nota:"Mapa e regras de português, 10 exercícios, banco com currículo e IA" },
+    { t:"Texto de monetização, divulgação, aquisição e riscos", ok:true, nota:"Licença anual por aluno, mínimo por escola, caminhos de contratação pública, canais e 7 riscos" },
+    { t:"Definir a faixa de preço que vai para a fala e alinhar com o texto", ok:true, nota:"Fica a faixa do pitch como hipótese (R$ 90–110 e R$ 55–75, mínimo ~R$ 10 mil). Docs, Drive e banca alinhados. O texto do Lucas não vai para o Drive" },
+    { t:"Refazer as alternativas erradas de português e escolher um número de contribuição", ok:true, nota:"Novo CSV com 10 questões diagnósticas (substitui o arquivo 10). Número da fala: R$ 65 mil para a rede de 5.000 alunos" },
+    { t:"HOJE · Montar a pasta do Google Drive", ok:false, nota:"Zip descompactado + PDF do deck (Daniel passa ~20h10) + PNGs do Mateus. Acesso: qualquer pessoa com o link" },
+    { t:"HOJE · Testar o link numa aba anônima e enviar pelo site", ok:false, nota:"Envio às 20h20 (limite 20h40) e print no grupo" },
+    { t:"HOJE · Conferir os códigos BNCC que aparecem nas telas", ok:false, nota:"EF05MA03 e EF04MA06 (grupos), EF06MA09 e EF07MA13 (trilha) no site oficial da BNCC" },
+    { t:"HOJE · Dominar as perguntas de preço e viabilidade", ok:false, nota:"Doc 'Preparação para a banca': quem paga, integração, tempo do professor, dispensa de licitação" },
+    { t:"AMANHÃ · Revisar o texto de monetização", ok:false, nota:"Trocar 'ligas pequenas' por 'missão coletiva, sem ranking' e 'sincroniza offline' por 'evolução depois do MVP'" },
+    { t:"AMANHÃ · Registrar o retorno da banca e ajustar os documentos", ok:false, nota:"Anotar todas as perguntas e críticas de hoje logo depois da apresentação" },
+  ]},
+  { nome:"Mateus", papel:"Protótipo funcional", itens:[
+    { t:"Protótipo navegável com as telas e os dados", ok:true, nota:"Modo Play do canvas: fluxos do aluno e do professor completos (montado pelo Daniel)" },
+    { t:"HOJE · Exportar os PNGs das telas", ok:false, nota:"Pedir ao chat de UI só a exportação, sem mudar telas; entregar ao Lucas até 20h" },
+    { t:"HOJE · Gravar o vídeo do plano B da demonstração", ok:false, nota:"Caminho do slide 5 no canvas; deixar aberto numa aba na hora da apresentação" },
+    { t:"HOJE · Dominar as perguntas de tecnologia, IA e LGPD", ok:false, nota:"Doc 'Preparação para a banca': stack, onde entra a IA, por que não o Gemini, proteção dos dados" },
+    { t:"AMANHÃ · Protótipo funcional para a final", ok:false, nota:"Usar o pacote Eduka_Prototipo_Mateus.zip e o prompt único no outro chat do projeto. Só depois da apresentação de hoje" },
+  ]},
+  { nome:"Gabriel", papel:"Pitch e viabilidade", itens:[
+    { t:"Slides e roteiro de 7 minutos", ok:true, nota:"Pitch v1 escrito. Gabriel ajusta os pontos de consistência direto no pitch. Faltam: preencher a pesquisa e montar o deck" },
+    { t:"Argumento de viabilidade (contratação, planilha, celular)", ok:true, nota:"Pacote 2 (07_Viabilidade): contratação, implantação, custos estimados, MVP em 12 semanas, 8 perguntas da banca" },
+    { t:"LGPD e proteção do aluno", ok:true, nota:"Pacote 2 (08_LGPD): inventário, bases legais, ECA Digital, quem vê o quê, 6 perguntas. Não citar artigos do ECA Digital na fala" },
+    { t:"Respostas para as perguntas da banca", ok:true, nota:"18 perguntas com resposta curta e responsável no doc 'Preparação para a banca'; falta treinar" },
+    { t:"Link do Google Drive enviado", ok:false, nota:"Ver 'Entrega de hoje'" },
+    { t:"Extra: especificação das telas do professor e do configurador", ok:true, nota:"Mapa de telas, regras de privacidade, permissões e ordem de construção do MVP" },
+  ]},
+];
+
+function pct(a,b){ return b ? Math.round(a/b*100) : 0; }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function render(){
+  let total=0, feitos=0;
+  const html = EQUIPE.map(p=>{
+    const f = p.itens.filter(i=>i.ok).length, n = p.itens.length;
+    total+=n; feitos+=f;
+    const v = pct(f,n);
+    return `<article class="card">
+      <div class="card-head">
+        <div><div class="role">${esc(p.papel)}</div><h2>${esc(p.nome)}</h2></div>
+        <div class="pct">${v}% <span>${f}/${n}</span></div>
+      </div>
+      <div class="bar sm" role="progressbar" aria-label="Progresso de ${esc(p.nome)}" aria-valuenow="${v}" aria-valuemin="0" aria-valuemax="100"><div class="fill" data-w="${v}"></div></div>
+      <ul>${p.itens.map(i=>`<li class="${i.ok?'done':''}"><span class="dot" aria-hidden="true"></span>
+        <div class="task"><span class="task-name">${esc(i.t)}</span><span class="tag">${i.ok?'Entregue':'Pendente'}</span>
+        ${i.nota?`<span class="note">${esc(i.nota)}</span>`:''}</div></li>`).join('')}</ul>
+    </article>`;
+  }).join('');
+  document.getElementById('people').innerHTML = html;
+  const tv = pct(feitos,total);
+  document.getElementById('totalPct').innerHTML = `${tv}%<small>entregue</small>`;
+  document.getElementById('totalCount').innerHTML = `<b>${feitos}</b> de <b>${total}</b> entregas`;
+  const tb = document.getElementById('totalBar');
+  tb.setAttribute('aria-valuenow',tv); tb.setAttribute('aria-valuemin',0); tb.setAttribute('aria-valuemax',100);
+  tb.querySelector('.fill').dataset.w = tv;
+  document.getElementById('updated').textContent = `Última atualização: ${ATUALIZADO}`;
+  requestAnimationFrame(()=>document.querySelectorAll('.fill').forEach(el=>el.style.width=el.dataset.w+'%'));
+}
+
+function countdown(){
+  const prazo = new Date('2026-10-29T20:40:00-03:00');
+  const ms = prazo - new Date();
+  const el = document.getElementById('countdown');
+  if (ms <= 0){ el.innerHTML = '<b>Prazo encerrado</b>'; return; }
+  const h = Math.floor(ms/3.6e6), m = Math.floor(ms%3.6e6/6e4);
+  el.innerHTML = `Faltam <b>${h}h ${String(m).padStart(2,'0')}min</b> para o envio`;
+}
+render(); countdown(); setInterval(countdown, 30000);
+</script>
+
+</body></html>

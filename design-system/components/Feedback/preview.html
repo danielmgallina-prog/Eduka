@@ -1,0 +1,23 @@
+<!-- @dsCard group="Exercício" height=220 -->
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>Feedback de resposta</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600\&family=Lexend:wght@400;600\&display=swap">
+<style>
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--font-sans);}
+.wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);padding:var(--space-5);}
+.f{border-radius:var(--radius-xl);padding:var(--space-4) var(--space-5);display:flex;flex-direction:column;gap:var(--space-2);box-shadow:var(--shadow-flutua);}
+.f.ok{background:var(--acerto-soft);}
+.f.no{background:var(--erro-soft);}
+.t{display:flex;align-items:center;gap:var(--space-2);font-family:var(--font-display);font-size:22px;line-height:28px;font-weight:600;}
+.ok .t{color:var(--acerto-texto);} .no .t{color:var(--erro);}
+.ic{width:28px;height:28px;border-radius:var(--radius-full);display:grid;place-items:center;flex:none;}
+.ok .ic{background:var(--acerto);color:var(--on-acerto);} .no .ic{background:var(--erro);color:var(--on-erro);}
+.ic svg{width:16px;height:16px;}
+.m{font-size:16px;line-height:24px;color:var(--ink);margin:0;}
+.pts{font-size:13px;line-height:18px;font-weight:600;color:var(--laranja-texto);}
+</style></head>
+<body><div class="wrap">
+<div class="f ok"><div class="t"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>Certo!</div><p class="m">3/4 de 12 são 9 balas.</p><span class="pts">+10 pontos</span></div>
+<div class="f no"><div class="t"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></span>Quase</div><p class="m">Confira o denominador: ele mostra em quantas partes o todo foi dividido.</p></div>
+</div></body></html>
